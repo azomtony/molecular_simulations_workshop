@@ -1,9 +1,8 @@
 import "water.lt"
-import "phenol.lt"
 write_once("Data Boundary") {
-   0.0  52.0  xlo xhi
-   0.0  52.0  ylo yhi
-   0.0  52.0  zlo zhi
+   0.0  20.0  xlo xhi
+   0.0  20.0  ylo yhi
+   0.0  20.0  zlo zhi
 }
-solvent = new water[4020]
-Solute  = new phenol[37]
+solvent = new water[267]
+
