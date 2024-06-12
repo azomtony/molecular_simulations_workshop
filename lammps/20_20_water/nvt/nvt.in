@@ -1,0 +1,37 @@
+
+
+# ----------------- Init Section -----------------
+
+include "system.in.init"
+
+
+# ----------------- Atom Definition Section -----------------
+
+read_restart "water_npt.restart"
+
+# ----------------- Settings Section -----------------
+
+include "system.in.settings"
+
+
+# ----------------- Charges Section -----------------
+
+include "system.in.charges"
+
+group water type 76 77
+fix 1 water shake 0.0001 20 0 b 239 a 483
+
+timestep 1.0
+fix fxnvt all nvt temp 300.0 300.0 100.0
+dump 1 all custom 1000 water_nvt.lammpstrj id type x y z
+dump_modify 1 sort 1
+
+thermo_style multi
+thermo 1000 
+#1 ns
+run 1000000
+
+write_data water_nvt.data
+
+write_restart water_nvt.restart
+
